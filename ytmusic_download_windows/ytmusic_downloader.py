@@ -2,7 +2,7 @@ from ytmusicapi import YTMusic
 import os
 import time
 
-ytmusic = YTMusic('headers_auth.json') #read auth file
+ytmusic = YTMusic('../headers_auth.json') #read auth file
 songs = ytmusic.get_liked_songs(limit=5000)
 
 f = open("IdList.txt", "r")
