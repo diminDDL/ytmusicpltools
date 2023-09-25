@@ -17,7 +17,11 @@ def ContainsTrackId (TrackId, TrackDict):
 
 songList = []
 for n in songs['tracks']:
-    if not ContainsTrackId(n['videoId'], targetPl['tracks']):
+    # if targetPl['tracks'] is None then start adding songs
+    if targetPl.get('tracks', None) is None:
+        print("target playlist is empty")
+        songList.append(n['videoId'])
+    elif not ContainsTrackId(n['videoId'], targetPl['tracks']):
         print("not in playlist: " + n['videoId'])
         songList.append(n['videoId'])
     else:

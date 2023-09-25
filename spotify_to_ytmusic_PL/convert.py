@@ -1,4 +1,5 @@
 import spotipy
+import json
 from spotipy.oauth2 import SpotifyOAuth
 from ytmusicapi import YTMusic
 from time import sleep
@@ -8,12 +9,16 @@ debug = False # Set to True to enable debug output
 chunk_size = 50 # Number of tracks to add per API call
 load_limit = 5000 # Number of tracks to load from Spotify per API call
 sleep_time = 2 # Seconds to wait between API calls
+playlis = "2Oa5Tjb4DZGgAOuM5PgUsk"  # Spotify playlist ID
 
-playlis = "2Oa5Tjb4DZGgAOuM5PgUsk"
+
+# Load Spotify credentials from an external file
+with open('../spotify_secrets.json') as f:
+    spotify_secrets = json.load(f)
 
 # Set up authentication
-sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id='0a2096f0e5a545c7a80dc797d11b741c',
-                                               client_secret='c4a346ce66d84eec985e2642da15f927',
+sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=spotify_secrets['client_id'],
+                                               client_secret=spotify_secrets['client_secret'],
                                                redirect_uri='http://localhost:8888/callback',
                                                scope='user-library-read playlist-read-private'))
 
