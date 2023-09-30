@@ -1,3 +1,6 @@
 *.cache
 headers_auth.json
 spotify_secrets.json
+*.mp3
+IdList.txt
+browser.json
